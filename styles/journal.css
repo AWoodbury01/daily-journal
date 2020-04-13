@@ -1,0 +1,21 @@
+.nameHeader{
+    display: flex;
+    justify-content: center;
+    padding: 5em;
+    text-align: center;
+}
+
+.uniqueHeader{
+    display: flex;
+    padding: 5em;
+    justify-content: center;
+}
+
+/* .carousel-item{
+    data-interval
+} */
+
+/* .unique{
+    display: flex;
+    justify-content: center;
+} */
