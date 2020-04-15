@@ -8,3 +8,5 @@ $('.carousel').carousel({
   const journalEntry = {
       
   }
+
+  
