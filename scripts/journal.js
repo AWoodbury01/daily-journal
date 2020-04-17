@@ -6,6 +6,7 @@ $('.carousel').carousel({
   })
 
   const journalEntry = {
+      let: entriesArray = [],
       
   }
 

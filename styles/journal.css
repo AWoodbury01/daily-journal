@@ -1,14 +1,18 @@
-.nameHeader{
+.nameHeader {
     display: flex;
     justify-content: center;
     padding: 5em;
     text-align: center;
 }
 
-.uniqueHeader{
+.uniqueHeader {
     display: flex;
     padding: 5em;
     justify-content: center;
+}
+
+#carouselFrontPage {
+    height: auto;
 }
 
 /* .carousel-item{
