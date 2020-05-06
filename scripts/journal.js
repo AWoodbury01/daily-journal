@@ -32,26 +32,25 @@ document.querySelector("#content-container").addEventListener("click", function(
 
     // Submit button command
     if (event.target.id === "journal-submit-btn") {
+        // Print array of journal entries to the DOM
         entriesArray.push(journalEntry(entryDateValue,conceptValue, textValue, moodValue))
-        
-        // console.log(entriesArray)
-
+        // Print submitted entry to the DOM
         printJournalEntries(entriesArray)
+        // Event listener for submit
+        document.getElementById('journal-submit-btn').addEventListener('submit', entriesArray)
+
+        fetch("http://localhost:3000/entries", {
+            method: 'POST',
+            body: JSON.stringify({entriesArray})
+        }) // Fetch from the API
+        .then(entries => entries.json())  // Parse as JSON
+        .then(journalData => {
         
+        console.table(journalData)
+    })
     }
 })
 
 // Clear button
 // .reset for forms
 // .remove for others
-
-// entriesArray.push(journalEntry()
-//Manual push
-// entriesArray.push(journalEntry("4/17/2020", "Maker and doer functions", "Today I've been working on my daily journal. My goal is combining my personal website with the daily journal as a page on my website", "I'm confident"))
-
-fetch("http://localhost:3000/entries") // Fetch from the API
-    .then(entries => entries.json())  // Parse as JSON
-    .then(journalEntries => {
-        // What should happen when we finally have the array?
-        console.table(journalEntries)
-    })
