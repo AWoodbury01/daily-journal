@@ -1,28 +1,23 @@
-// Create the journal entry
-const makeJournalEntryComponent = (journalEntry) => {
-    return `
-    
-    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-     <div class="card-header">${journalEntry.date}</div>
-        <div class="card-body">
-            <h5 class="card-title">${journalEntry.concept}</h5>
-            <p class="card-text">${journalEntry.entry}</p>
-            <p class="card-text">Mood: ${journalEntry.mood}</p>
-    </div>`
+// Journal entry printer
+function entryPrinter(SingleEntry) {
+  return `
+  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">${SingleEntry.date}</div>
+           <div class="card-body">
+               <h5 class="card-title">${SingleEntry.concept}</h5>
+               <p class="card-text">${SingleEntry.entry}</p>
+               <p class="card-text">Mood: ${SingleEntry.mood}</p>
+       </div>`;
 }
 
-//Function that prints journal entries to the DOM
-const printJournalEntries = (entries) => {
-    //For loop that goes through the array of journal entries and prints
-    for (let i = 0; i < entriesArray.length; i++) {
-        let domEnter = makeJournalEntryComponent(entries[i])
-        document.querySelector("#entry-container").innerHTML += domEnter
-    }
+// Pull journal entries from json
+function pullEntries (){
+
 }
 
 // Contents for Journal Entry forms page
-function journalContainer(){
-    return `
+function journalContainer() {
+  return `
     <div id="entry-container" class="container p-4">
             <div class="container pb-3 d-flex justify-content-center"> 
                 <h3>Daily Journal</h3>
@@ -67,13 +62,16 @@ function journalContainer(){
                     </select>
                 </div>
             </fieldset>
-            
-            <!-- Journal submit button -->
-            <div class="container pb-4">
-                <button type="button" class="btn btn-outline-secondary" id="journal-submit-btn">Submit Journal Entry</button>
-            </div>
         </form>
-    </div>`
+        <!-- Journal submit button -->
+        <div class="container pb-4">
+        <button type="button" class="btn btn-outline-secondary" id="journal-submit-btn">Submit Journal Entry</button>
+        </div>
+        <!-- Journal printing area -->
+        <div class="container">
+            <section id="journal-printing-area">
+            </section>
+        </div>
+
+    </div>`;
 }
-
-

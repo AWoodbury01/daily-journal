@@ -1,56 +1,72 @@
 // Daily Journal nav button event listener
-document.querySelector("#daily-journal").addEventListener("click", function(){    
-    document.querySelector("#content-container").innerHTML = journalContainer()
-})
+document.querySelector("#daily-journal").addEventListener("click", function () {
+  document.querySelector("#content-container").innerHTML = journalContainer();
+});
 
-// Array of entries
-const entriesArray = [];
 
-//Function that fills in journal entry information
-function journalEntry(entryDate, conceptLearned, journalText, mood){
-    const newEntry = {
-            date: `${entryDate}`,
-            concept: `${conceptLearned}`,
-            entry: `${journalText}`,
-            mood: `${mood}`
-    }
-    return newEntry;
-}
+
+    // Function that fills in journal entry information
+    function journalEntry(entryDate, conceptLearned, journalText, mood) {
+      const newEntry = {
+        date: `${entryDate}`,
+        concept: `${conceptLearned}`,
+        entry: `${journalText}`,
+        mood: `${mood}`,
+      };
+      return newEntry;
+      }
+  
 
 
 // Daily Journal submit button event listener
-document.querySelector("#content-container").addEventListener("click", function(){
+document
+  .querySelector("#content-container")
+  .addEventListener("click", function () {
     // Form values
     // Journal date
-    let entryDateValue = document.querySelector("#journal-date").value
+    const entryDateValue = document.querySelector("#journal-date").value;
     // Journal concept
-    let conceptValue = document.querySelector("#concepts-covered").value
+    const conceptValue = document.querySelector("#concepts-covered").value;
     // Journal Text
-    let textValue = document.querySelector("#journal-entry").value
+    const textValue = document.querySelector("#journal-entry").value;
     // Journal Mood
-    let moodValue = document.querySelector("#mood-form").value
+    const moodValue = document.querySelector("#mood-form").value;
+    
+    // Entry object
+    const entryObject = {
+      concept: conceptValue,
+      date: entryDateValue,
+      entry: textValue,
+      mood: moodValue
+    }
 
     // Submit button command
     if (event.target.id === "journal-submit-btn") {
-        // Print array of journal entries to the DOM
-        entriesArray.push(journalEntry(entryDateValue,conceptValue, textValue, moodValue))
-        // Print submitted entry to the DOM
-        printJournalEntries(entriesArray)
-        // Event listener for submit
-        document.getElementById('journal-submit-btn').addEventListener('submit', entriesArray)
-
-        fetch("http://localhost:3000/entries", {
-            method: 'POST',
-            body: JSON.stringify({entriesArray})
-        }) // Fetch from the API
-        .then(entries => entries.json())  // Parse as JSON
-        .then(journalData => {
+    // Clear the printing area
+    document
+    .querySelector("#journal-printing-area")
+    .innerHTML += ""
+      
+      // Post statement
+      fetch("http://localhost:3000/entries", {
+        method: "POST",
+        header: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(entryObject),
+      
+        })
+        .then(function(){
         
-        console.table(journalData)
-    })
-    }
-})
-
-// Clear button
-// .reset for forms
-// .remove for others
+        // fetch new results from json
+        fetch("http://localhost:3000/entries")
+        .then(r => r.json)
+        .then(entries => {
+        
+        entries.forEach(entry => {
+        // Print submitted entry to the DOM
+          document
+          .querySelector("#journal-printing-area")
+          .innerHTML +=
+          entryPrinter(entry)
+        })})})}})
