@@ -15,6 +15,13 @@
   height: auto;
 }
 
+.journal-entries-container {
+  display: flex;
+  flex-flow: row wrap;
+  flex-basis: auto;
+  
+}
+
 /* .carousel-item{
     data-interval
 } */

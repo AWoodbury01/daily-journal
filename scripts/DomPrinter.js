@@ -7,13 +7,14 @@ function entryPrinter(SingleEntry) {
                <h5 class="card-title">${SingleEntry.concept}</h5>
                <p class="card-text">${SingleEntry.entry}</p>
                <p class="card-text">Mood: ${SingleEntry.mood}</p>
+               <button 
+               type="button" 
+               class="btn btn-outline-danger" id="delete-btn-${SingleEntry.id}">Delete</button>
        </div>`;
 }
 
 // Pull journal entries from json
-function pullEntries (){
-
-}
+function pullEntries() {}
 
 // Contents for Journal Entry forms page
 function journalContainer() {
@@ -65,12 +66,18 @@ function journalContainer() {
         </form>
         <!-- Journal submit button -->
         <div class="container pb-4">
-        <button type="button" class="btn btn-outline-secondary" id="journal-submit-btn">Submit Journal Entry</button>
+            <button type="button" class="btn btn-outline-secondary" id="journal-submit-btn">Submit Journal Entry</button>
         </div>
+        
+        <!-- Entries Header -->
+        <div id="entry-container" class="container p-4">
+        <div class="container pb-3 d-flex justify-content-center"> 
+            <h3>Entries</h3>
+    </div>
+
         <!-- Journal printing area -->
         <div class="container">
-            <section id="journal-printing-area">
-            </section>
+            <section id="journal-printing-area" class="container journal-entries-container"></section>
         </div>
 
     </div>`;
