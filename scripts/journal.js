@@ -5,19 +5,16 @@ document.querySelector("#daily-journal").addEventListener("click", function () {
   fetch("http://localhost:3000/entries")
     .then((r) => r.json())
     .then((entries) => {
-    // Clear the printing area
-    document.querySelector("#journal-printing-area").innerHTML = "";
+      // Clear the printing area
+      document.querySelector("#journal-printing-area").innerHTML = "";
 
-    entries.forEach((entry) => {
-
-    // Print submitted entry to the DOM
-    document.querySelector(
-      "#journal-printing-area"
-    ).innerHTML += entryPrinter(entry);
+      entries.forEach((entry) => {
+        // Print submitted entry to the DOM
+        document.querySelector(
+          "#journal-printing-area"
+        ).innerHTML += entryPrinter(entry);
       });
     });
-  
-
 });
 
 // Function that fills in journal entry information
@@ -72,11 +69,10 @@ document
         fetch("http://localhost:3000/entries")
           .then((r) => r.json())
           .then((entries) => {
-          // Clear the printing area
-          document.querySelector("#journal-printing-area").innerHTML = "";
+            // Clear the printing area
+            document.querySelector("#journal-printing-area").innerHTML = "";
 
             entries.forEach((entry) => {
-
               // Print submitted entry to the DOM
               document.querySelector(
                 "#journal-printing-area"
@@ -87,12 +83,31 @@ document
     }
   });
 
-  // Delete button event listener
-  document
-  .querySelector ("#content-container")
-  .addEventListener ("click", function () {
+// Delete button event listener
+document
+  .querySelector("#content-container")
+  .addEventListener("click", function () {
     if (event.target.id.includes("delete-btn")) {
-      console.log("You clicked the delete button")
-      console.log(event.target.id)
+      console.log(event.target.id.split("-")[2]);
+      const primaryKey = event.target.id.split("-")[2];
+      // Delete fetch call
+      fetch(`http://localhost:3000/entries/${primaryKey}`, {
+        method: "DELETE",
+      }).then(() => {
+        // fetch new results from json
+        fetch("http://localhost:3000/entries")
+          .then((r) => r.json())
+          .then((entries) => {
+            // Clear the printing area
+            document.querySelector("#journal-printing-area").innerHTML = "";
+            entries.forEach((entry) => {
+
+            // Print submitted entry to the DOM
+            document.querySelector(
+              "#journal-printing-area"
+            ).innerHTML += entryPrinter(entry);
+            })
+          });
+      });
     }
-  })
+  });
