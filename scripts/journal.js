@@ -1,21 +1,29 @@
 // Daily Journal nav button event listener
-document.querySelector("#daily-journal").addEventListener("click", function () {
-  document.querySelector("#content-container").innerHTML = journalContainer();
-  // fetch new results from json
-  fetch("http://localhost:3000/entries")
-    .then((r) => r.json())
-    .then((entries) => {
-      // Clear the printing area
-      document.querySelector("#journal-printing-area").innerHTML = "";
-
-      entries.forEach((entry) => {
-        // Print submitted entry to the DOM
-        document.querySelector(
-          "#journal-printing-area"
-        ).innerHTML += entryPrinter(entry);
-      });
-    });
+document.querySelector("body").addEventListener("click", function () {
+  if (event.target.id === "daily-journal") {
+    document.querySelector("#content-container").innerHTML = journalContainer();
+    // fetch new results from json
+    fetch("http://localhost:3000/entries")
+      .then((r) => r.json())
+      .then((entries) => {
+        // Clear the printing area
+        document.querySelector("#journal-printing-area").innerHTML = "";
+  
+        entries.forEach((entry) => {
+          // Print submitted entry to the DOM
+          document.querySelector(
+            "#journal-printing-area"
+          ).innerHTML += entryPrinter(entry);
+        });
+      });  
+  }
 });
+
+// Home nav button event listener
+document.querySelector("body").addEventListener("click", function (){
+  
+}
+
 
 // Function that fills in journal entry information
 function journalEntry(entryDate, conceptLearned, journalText, mood) {

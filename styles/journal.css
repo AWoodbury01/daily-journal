@@ -1,21 +1,29 @@
-.nameHeader {
-  display: flex;
-  justify-content: center;
-  padding: 5em;
-  text-align: center;
-  background-image: url();
-  opacity: 75%;
-}
-
 .background-div{
-  display: flex;
-
+  background-image: url('/oneplus.jpg');
+  background-size: cover;
+  height: 100vh;
+  justify-content: center;
 }
 
-.uniqueHeader {
+.header-container {
   display: flex;
-  padding: 5em;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.name-header {
+  display: flex;
+  opacity: 75%;
+  background-color: #dbd4d4;
+  width: 30rem;
+  height: 30rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.navbar {
+  opacity: 75%;
 }
 
 #carouselFrontPage {

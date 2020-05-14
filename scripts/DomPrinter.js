@@ -19,7 +19,21 @@ function pullEntries() {}
 // Contents for Journal Entry forms page
 function journalContainer() {
   return `
-    <div id="entry-container" class="container p-4">
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark" style="background-color: #095a94">
+    <a class="navbar-brand" href="#">Ashon Woodbury</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" id="daily-journal" href="#">Daily Journal</a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="entry-container" class="container p-4">
             <div class="container pb-3 d-flex justify-content-center"> 
                 <h3>Daily Journal</h3>
             </div>
@@ -81,4 +95,34 @@ function journalContainer() {
         </div>
 
     </div>`;
+}
+
+// Splash page contents
+function splashContainer(){
+    return `
+    <!-- Page Title -->
+    <div id="background-container"
+    class="background-div">
+      <!-- Navbar -->
+      <nav class="navbar navbar-dark" style="background-color: #095a94">
+        <a class="navbar-brand" href="#">Ashon Woodbury</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" id="daily-journal" href="#">Daily Journal</a>
+          </div>
+        </div>
+      </nav>
+    
+      <div class="header-container">
+        <div class="name-header">
+          <h1>Ashon's Website</h1>
+        </div>
+      </div>
+    </div>
+    
+    `
 }
