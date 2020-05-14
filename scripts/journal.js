@@ -93,5 +93,6 @@ document
   .addEventListener ("click", function () {
     if (event.target.id.includes("delete-btn")) {
       console.log("You clicked the delete button")
+      console.log(event.target.id)
     }
   })

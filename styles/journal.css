@@ -18,8 +18,13 @@
 .journal-entries-container {
   display: flex;
   flex-flow: row wrap;
-  flex-basis: auto;
-  
+  flex-basis: content;
+  justify-content: space-between;
+  width: 10 rem;
+}
+
+.card {
+  width: 22rem;
 }
 
 /* .carousel-item{

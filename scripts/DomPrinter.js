@@ -1,7 +1,7 @@
 // Journal entry printer
 function entryPrinter(SingleEntry) {
   return `
-  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  <div class="card text-white bg-dark mb-3">
         <div class="card-header">${SingleEntry.date}</div>
            <div class="card-body">
                <h5 class="card-title">${SingleEntry.concept}</h5>
