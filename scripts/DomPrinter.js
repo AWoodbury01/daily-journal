@@ -1,12 +1,15 @@
 // Journal entry printer
 function entryPrinter(SingleEntry) {
   return `
-  <div class="card text-white bg-dark mb-3">
+  <div class="card text-white bg-dark mb-3" id="card-${SingleEntry.id}">
         <div class="card-header">${SingleEntry.date}</div>
            <div class="card-body">
                <h5 class="card-title">${SingleEntry.concept}</h5>
                <p class="card-text">${SingleEntry.entry}</p>
                <p class="card-text">Mood: ${SingleEntry.mood}</p>
+               <button 
+               type="button" 
+               class="btn btn-outline-info" id="edit-btn-${SingleEntry.id}">Edit</button>              
                <button 
                type="button" 
                class="btn btn-outline-danger" id="delete-btn-${SingleEntry.id}">Delete</button>
@@ -20,14 +23,14 @@ function pullEntries() {}
 function journalContainer() {
   return `
   <!-- Navbar -->
-  <nav class="navbar navbar-dark" style="background-color: #095a94">
+  <nav class="navbar navbar-dark">
     <a class="navbar-brand" href="#">Ashon Woodbury</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" id="home-btn" href="#">Home<span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link active" id="daily-journal" href="#">Daily Journal</a>
       </div>
     </div>
@@ -98,20 +101,21 @@ function journalContainer() {
 }
 
 // Splash page contents
-function splashContainer(){
-    return `
+function splashContainer() {
+  return `
     <!-- Page Title -->
     <div id="background-container"
     class="background-div">
       <!-- Navbar -->
-      <nav class="navbar navbar-dark" style="background-color: #095a94">
+      <nav class="navbar navbar-dark">
+
         <a class="navbar-brand" href="#">Ashon Woodbury</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" id="home-btn"  href="#">Home<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link active" id="daily-journal" href="#">Daily Journal</a>
           </div>
         </div>
@@ -122,7 +126,26 @@ function splashContainer(){
           <h1>Ashon's Website</h1>
         </div>
       </div>
-    </div>
-    
-    `
+    </div>`;
+}
+
+function buildEditForm (SingleEntry){
+  return `<form>
+  <fieldset>
+    <legend>Edit Journal Entry:</legend>
+    <label for="lego__creator">Creator:</label>
+    <input id="lego__creator--edit" name="lego__creator" type="text" value=${SingleEntry.creator} autofocus />
+    <label for="lego__creator">Shape:</label>
+    <input id="lego__shape--edit" name="lego__creator" type="text" value=${SingleEntry.shape} autofocus />
+    <label for="lego__creation">Creation:</label>
+    <input id="lego__creation--edit" name="lego__creator" type="text" value=${SingleEntry.creation} autofocus />
+  </fieldset>
+</form>
+<button class="save-edit-btn" id="save-edit-${SingleEntry.id}">Save</button>`
+}
+
+// Function for fetch for single entry
+const getSingleCard = (cardId) => {
+  return fetch(`http://localhost:3000/entries/${cardId}`)
+  .then(r => r.json())
 }

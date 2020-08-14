@@ -21,8 +21,12 @@ document.querySelector("body").addEventListener("click", function () {
 
 // Home nav button event listener
 document.querySelector("body").addEventListener("click", function (){
-  
-}
+  if (event.target.id === "home-btn") {
+    document
+    .querySelector("#content-container")
+    .innerHTML = splashContainer()
+  }
+})
 
 
 // Function that fills in journal entry information
@@ -40,7 +44,10 @@ function journalEntry(entryDate, conceptLearned, journalText, mood) {
 document
   .querySelector("#content-container")
   .addEventListener("click", function () {
-    // Form values
+
+    // Submit button command
+    if (event.target.id === "journal-submit-btn") {
+          // Form values
     // Journal date
     const entryDateValue = document.querySelector("#journal-date").value;
     // Journal concept
@@ -58,8 +65,7 @@ document
       mood: moodValue,
     };
 
-    // Submit button command
-    if (event.target.id === "journal-submit-btn") {
+      
       // Post statement
       fetch("http://localhost:3000/entries", {
         method: "POST",
@@ -96,7 +102,7 @@ document
   .querySelector("#content-container")
   .addEventListener("click", function () {
     if (event.target.id.includes("delete-btn")) {
-      console.log(event.target.id.split("-")[2]);
+      // Split target ID
       const primaryKey = event.target.id.split("-")[2];
       // Delete fetch call
       fetch(`http://localhost:3000/entries/${primaryKey}`, {
@@ -117,5 +123,18 @@ document
             })
           });
       });
-    }
-  });
+    } else if (event.target.id.includes("edit-btn")){
+      console.log("edit button clicked", event.target.id)
+      // Split target ID
+      const primaryKey = event.target.id.split("-")[2];
+      // define card to replace
+      const cardToReplace = document.querySelector(`#card-${primaryKey}`)
+      
+      console.log(entryPrinter(primaryKey))
+      // fetch for edit card
+      getSingleCard(primaryKey)
+      .then(singleEntryData => {
+        cardToReplace.innerHTML = buildEditForm(singleEntryData)
+      })
+
+  }});
